@@ -8,22 +8,22 @@
     <!-- SIDEBAR -->
     <div class="sidebar d-flex flex-column" id="sidebar">
 
-        <!-- HEADER -->
-        <div class="sidebar-header px-4 py-4">
+        <!-- HEADER (fixed, tidak ikut scroll) -->
+        <div class="sidebar-header px-4 py-4 flex-shrink-0">
             <h4 class="fw-bold mb-0 text-white">SiAbsensi</h4>
             <small class="text-light d-block">Academic Architecture</small>
         </div>
 
-        <!-- ROLE -->
-        <div class="px-3 py-2 mb-3">
+        <!-- ROLE (fixed, tidak ikut scroll) -->
+        <div class="px-3 py-2 mb-3 flex-shrink-0">
             <span class="badge role-badge w-100 text-uppercase text-center">
                 <i class="bi bi-person-badge me-1"></i> OPERATOR SEKOLAH
             </span>
         </div>
 
-        <!-- MENU - SCROLLABLE AREA -->
-        <div class="flex-grow-1 overflow-auto sidebar-menu">
-            <ul class="nav flex-column px-2 m-0">
+        <!-- MENU - SCROLLABLE AREA (ini yang akan di-scroll) -->
+        <div class="sidebar-menu flex-grow-1">
+            <ul class="nav flex-column px-2">
                 <li>
                     <a href="{{ route('operator.dashboard') }}" class="nav-link sidebar-link {{ request()->routeIs('operator.dashboard') ? 'active-menu' : '' }}">
                         <i class="bi bi-house-door me-2"></i> Dashboard
@@ -43,9 +43,6 @@
                 </li>
 
                 <!-- Menu Absensi -->
-                <li class="nav-header px-2 py-2 mt-2">
-                    <span class="small text-white-50 text-uppercase">Absensi</span>
-                </li>
                 <li>
                     <a href="{{ route('operator.absensi.siswa') }}" class="nav-link sidebar-link {{ request()->routeIs('operator.absensi.siswa') ? 'active-menu' : '' }}">
                         <i class="bi bi-people me-2"></i> Absensi Siswa
@@ -71,7 +68,7 @@
             </ul>
         </div>
 
-        <!-- INFO SEKOLAH TUGAS -->
+        <!-- INFO SEKOLAH TUGAS (fixed di bawah, tidak ikut scroll) -->
         @php
             $assignment = App\Models\UserAssignment::where('user_id', auth()->id())
                 ->where('target_type', 'sekolah')
@@ -81,7 +78,7 @@
         @endphp
 
         @if($sekolahTugas)
-        <div class="px-3 py-3 border-top border-light border-opacity-10">
+        <div class="px-3 py-3 border-top border-light border-opacity-10 flex-shrink-0">
             <div class="small text-white-50 mb-2">
                 <i class="bi bi-building me-1"></i> Sekolah Tugas
             </div>
@@ -94,8 +91,8 @@
         </div>
         @endif
 
-        <!-- FOOTER / LOGOUT -->
-        <div class="sidebar-footer px-3 py-3 mt-auto">
+        <!-- FOOTER / LOGOUT (fixed di bawah, tidak ikut scroll) -->
+        <div class="sidebar-footer px-3 py-3 flex-shrink-0">
             <div class="text-white mb-2 small">
                 <i class="bi bi-person-circle me-1"></i> Login sebagai <strong>{{ auth()->user()->name }}</strong>
             </div>
@@ -123,7 +120,7 @@
 /* SIDEBAR STYLES */
 .sidebar {
     width: 280px;
-    min-height: 100vh;
+    height: 100vh; /* Gunakan height: 100vh agar sidebar memenuhi tinggi layar */
     background: linear-gradient(180deg, #003566 0%, #001d3d 100%);
     display: flex;
     flex-direction: column;
@@ -133,18 +130,19 @@
     transition: transform 0.3s ease-in-out;
     z-index: 1050;
     box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    overflow: hidden; /* Mencegah scroll di sidebar utama */
 }
 
 .sidebar-header {
     background-color: rgba(0, 29, 61, 0.5);
     border-bottom: 1px solid rgba(255,255,255,0.1);
-    flex-shrink: 0;
+    flex-shrink: 0; /* Mencegah header mengecil */
 }
 
 .sidebar-footer {
     background-color: rgba(0, 29, 61, 0.5);
     border-top: 1px solid rgba(255,255,255,0.1);
-    flex-shrink: 0;
+    flex-shrink: 0; /* Mencegah footer mengecil */
 }
 
 .role-badge {
@@ -199,15 +197,15 @@
     color: #003566 !important;
 }
 
-/* SCROLLABLE MENU AREA */
+/* SCROLLABLE MENU AREA - INI YANG MEMBUAT SIDEBAR BISA DI-SCROLL */
 .sidebar-menu {
-    overflow-y: auto;
-    overflow-x: hidden;
-    flex: 1 1 auto;
-    min-height: 0;
+    overflow-y: auto; /* Scroll vertikal */
+    overflow-x: hidden; /* Sembunyikan scroll horizontal */
+    flex: 1 1 auto; /* Mengambil sisa ruang yang tersedia */
+    min-height: 0; /* Penting untuk flexbox agar scroll bisa bekerja */
 }
 
-/* Custom scrollbar untuk menu */
+/* Custom scrollbar untuk menu agar terlihat menarik */
 .sidebar-menu::-webkit-scrollbar {
     width: 5px;
 }
