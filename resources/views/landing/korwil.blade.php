@@ -308,13 +308,13 @@
     </nav>
 
     <!-- ======================= HERO SECTION ======================= -->
-    <section class="hero-section py-5">
+    <section class="py-5 hero-section">
         <div class="container py-5">
             <div class="row align-items-center">
-                <div class="col-lg-8 mx-auto text-center text-white">
-                    <h1 class="display-4 fw-bold mb-3 animate-fadeInUp">Rekap Data Koordinator Wilayah</h1>
-                    <p class="lead opacity-75 mb-4 animate-fadeInUp">Informasi lengkap data sekolah, tenaga pendidik, dan absensi seluruh wilayah</p>
-                    <div class="d-flex justify-content-center gap-3 animate-fadeInUp">
+                <div class="mx-auto text-center text-white col-lg-8">
+                    <h1 class="mb-3 display-4 fw-bold animate-fadeInUp">Rekap Data Koordinator Wilayah</h1>
+                    <p class="mb-4 opacity-75 lead animate-fadeInUp">Informasi lengkap data sekolah, tenaga pendidik, dan absensi seluruh wilayah</p>
+                    <div class="gap-3 d-flex justify-content-center animate-fadeInUp">
                         <div class="px-4 py-2 bg-white bg-opacity-10 rounded-pill">
                             <i class="fas fa-school me-2"></i> {{ number_format($totalSekolah) }} Sekolah
                         </div>
@@ -334,12 +334,12 @@
     <div class="container mt-5">
         <div class="row g-4">
             <div class="col-md-3">
-                <div class="stat-card p-4 text-center">
-                    <div class="stat-icon bg-primary bg-opacity-10 mx-auto mb-3">
+                <div class="p-4 text-center stat-card">
+                    <div class="mx-auto mb-3 stat-icon bg-primary bg-opacity-10">
                         <i class="fas fa-school fs-2 text-primary"></i>
                     </div>
-                    <h2 class="fw-bold text-primary mb-0">{{ number_format($totalSekolah) }}</h2>
-                    <p class="text-muted mb-0">Total Sekolah</p>
+                    <h2 class="mb-0 fw-bold text-primary">{{ number_format($totalSekolah) }}</h2>
+                    <p class="mb-0 text-muted">Total Sekolah</p>
                     <div class="mt-2">
                         <small class="text-success">Aktif: {{ $sekolahAktif }}</small> |
                         <small class="text-danger">Nonaktif: {{ $sekolahNonaktif }}</small>
@@ -347,12 +347,12 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="stat-card p-4 text-center">
-                    <div class="stat-icon bg-success bg-opacity-10 mx-auto mb-3">
+                <div class="p-4 text-center stat-card">
+                    <div class="mx-auto mb-3 stat-icon bg-success bg-opacity-10">
                         <i class="fas fa-chalkboard-user fs-2 text-success"></i>
                     </div>
-                    <h2 class="fw-bold text-success mb-0">{{ number_format($totalGuru) }}</h2>
-                    <p class="text-muted mb-0">Total Guru</p>
+                    <h2 class="mb-0 fw-bold text-success">{{ number_format($totalGuru) }}</h2>
+                    <p class="mb-0 text-muted">Total Guru</p>
                     <div class="mt-2">
                         <small class="text-success">Aktif: {{ number_format($guruAktif) }}</small> |
                         <small class="text-warning">Pensiun: {{ number_format($guruPensiun) }}</small>
@@ -360,12 +360,12 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="stat-card p-4 text-center">
-                    <div class="stat-icon bg-info bg-opacity-10 mx-auto mb-3">
+                <div class="p-4 text-center stat-card">
+                    <div class="mx-auto mb-3 stat-icon bg-info bg-opacity-10">
                         <i class="fas fa-user-graduate fs-2 text-info"></i>
                     </div>
-                    <h2 class="fw-bold text-info mb-0">{{ number_format($totalSiswa) }}</h2>
-                    <p class="text-muted mb-0">Total Siswa</p>
+                    <h2 class="mb-0 fw-bold text-info">{{ number_format($totalSiswa) }}</h2>
+                    <p class="mb-0 text-muted">Total Siswa</p>
                     <div class="mt-2">
                         <small class="text-success">Aktif: {{ number_format($siswaAktif) }}</small> |
                         <small class="text-info">Lulus: {{ number_format($siswaLulus) }}</small>
@@ -373,12 +373,12 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="stat-card p-4 text-center">
-                    <div class="stat-icon bg-warning bg-opacity-10 mx-auto mb-3">
+                <div class="p-4 text-center stat-card">
+                    <div class="mx-auto mb-3 stat-icon bg-warning bg-opacity-10">
                         <i class="fas fa-chart-line fs-2 text-warning"></i>
                     </div>
-                    <h2 class="fw-bold text-warning mb-0">{{ number_format($totalAbsensi) }}</h2>
-                    <p class="text-muted mb-0">Total Absensi</p>
+                    <h2 class="mb-0 fw-bold text-warning">{{ number_format($totalAbsensi) }}</h2>
+                    <p class="mb-0 text-muted">Total Absensi</p>
                     <div class="mt-2">
                         <small>Periode: {{ $periodeAktif->tahun_ajaran ?? '-' }} - Sem {{ $periodeAktif->semester ?? '-' }}</small>
                     </div>
@@ -391,35 +391,35 @@
     <div class="container mt-5">
         <div class="row g-4">
             <div class="col-lg-6">
-                <div class="stat-card p-4">
-                    <div class="d-flex align-items-center gap-3 mb-4">
+                <div class="p-4 stat-card">
+                    <div class="gap-3 mb-4 d-flex align-items-center">
                         <div class="stat-icon bg-success bg-opacity-10">
                             <i class="fas fa-users fs-2 text-success"></i>
                         </div>
                         <h4 class="mb-0 fw-bold">Absensi Siswa</h4>
                     </div>
-                    <div class="row text-center">
-                        <div class="col-6 mb-3">
-                            <div class="p-3 bg-light rounded">
-                                <h3 class="text-success mb-0">{{ number_format($siswaHadir) }}</h3>
+                    <div class="text-center row">
+                        <div class="mb-3 col-6">
+                            <div class="p-3 rounded bg-light">
+                                <h3 class="mb-0 text-success">{{ number_format($siswaHadir) }}</h3>
                                 <small class="text-muted">Hadir</small>
                             </div>
                         </div>
-                        <div class="col-6 mb-3">
-                            <div class="p-3 bg-light rounded">
-                                <h3 class="text-info mb-0">{{ number_format($siswaSakit) }}</h3>
+                        <div class="mb-3 col-6">
+                            <div class="p-3 rounded bg-light">
+                                <h3 class="mb-0 text-info">{{ number_format($siswaSakit) }}</h3>
                                 <small class="text-muted">Sakit</small>
                             </div>
                         </div>
-                        <div class="col-6 mb-3">
-                            <div class="p-3 bg-light rounded">
-                                <h3 class="text-warning mb-0">{{ number_format($siswaIzin) }}</h3>
+                        <div class="mb-3 col-6">
+                            <div class="p-3 rounded bg-light">
+                                <h3 class="mb-0 text-warning">{{ number_format($siswaIzin) }}</h3>
                                 <small class="text-muted">Izin</small>
                             </div>
                         </div>
-                        <div class="col-6 mb-3">
-                            <div class="p-3 bg-light rounded">
-                                <h3 class="text-danger mb-0">{{ number_format($siswaAlpha) }}</h3>
+                        <div class="mb-3 col-6">
+                            <div class="p-3 rounded bg-light">
+                                <h3 class="mb-0 text-danger">{{ number_format($siswaAlpha) }}</h3>
                                 <small class="text-muted">Alpha</small>
                             </div>
                         </div>
@@ -427,29 +427,29 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="stat-card p-4">
-                    <div class="d-flex align-items-center gap-3 mb-4">
+                <div class="p-4 stat-card">
+                    <div class="gap-3 mb-4 d-flex align-items-center">
                         <div class="stat-icon bg-info bg-opacity-10">
                             <i class="fas fa-chalkboard-user fs-2 text-info"></i>
                         </div>
                         <h4 class="mb-0 fw-bold">Absensi Guru</h4>
                     </div>
-                    <div class="row text-center">
-                        <div class="col-4 mb-3">
-                            <div class="p-3 bg-light rounded">
-                                <h3 class="text-success mb-0">{{ number_format($guruHadir) }}</h3>
+                    <div class="text-center row">
+                        <div class="mb-3 col-4">
+                            <div class="p-3 rounded bg-light">
+                                <h3 class="mb-0 text-success">{{ number_format($guruHadir) }}</h3>
                                 <small class="text-muted">Hadir</small>
                             </div>
                         </div>
-                        <div class="col-4 mb-3">
-                            <div class="p-3 bg-light rounded">
-                                <h3 class="text-warning mb-0">{{ number_format($guruIzin) }}</h3>
+                        <div class="mb-3 col-4">
+                            <div class="p-3 rounded bg-light">
+                                <h3 class="mb-0 text-warning">{{ number_format($guruIzin) }}</h3>
                                 <small class="text-muted">Izin</small>
                             </div>
                         </div>
-                        <div class="col-4 mb-3">
-                            <div class="p-3 bg-light rounded">
-                                <h3 class="text-danger mb-0">{{ number_format($guruAlpha) }}</h3>
+                        <div class="mb-3 col-4">
+                            <div class="p-3 rounded bg-light">
+                                <h3 class="mb-0 text-danger">{{ number_format($guruAlpha) }}</h3>
                                 <small class="text-muted">Alpha</small>
                             </div>
                         </div>
@@ -460,24 +460,181 @@
     </div>
 
     <!-- ======================= TAB MENU ======================= -->
-    <div class="container mt-5">
-        <ul class="nav nav-tabs-custom justify-content-center mb-4" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="korwil-tab" data-bs-toggle="tab" data-bs-target="#korwil" type="button" role="tab">
-                    <i class="fas fa-diagram-3 me-2"></i> Data Korwil
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="guru-tab" data-bs-toggle="tab" data-bs-target="#guru" type="button" role="tab">
-                    <i class="fas fa-chalkboard-user me-2"></i> Data Guru
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="siswa-tab" data-bs-toggle="tab" data-bs-target="#siswa" type="button" role="tab">
-                    <i class="fas fa-user-graduate me-2"></i> Data Siswa
-                </button>
-            </li>
-        </ul>
+<div class="container mt-5">
+    <ul class="mb-4 nav nav-tabs-custom justify-content-center" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="korwil-tab" data-bs-toggle="tab" data-bs-target="#korwil" type="button" role="tab">
+                <i class="fas fa-diagram-3 me-2"></i> Data Korwil
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="sekolah-tab" data-bs-toggle="tab" data-bs-target="#sekolah" type="button" role="tab">
+                <i class="fas fa-school me-2"></i> Data Sekolah
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="guru-tab" data-bs-toggle="tab" data-bs-target="#guru" type="button" role="tab">
+                <i class="fas fa-chalkboard-user me-2"></i> Data Guru
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="siswa-tab" data-bs-toggle="tab" data-bs-target="#siswa" type="button" role="tab">
+                <i class="fas fa-user-graduate me-2"></i> Data Siswa
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <!-- TAB KORWIL (sama seperti sebelumnya) -->
+
+        <!-- TAB SEKOLAH (TAMBAHKAN INI) -->
+        <div class="tab-pane fade" id="sekolah" role="tabpanel">
+            <div class="mb-4 search-box">
+                <form method="GET" action="{{ url('/rekap-korwil') }}" class="row g-3">
+                    <input type="hidden" name="tab" value="sekolah">
+                    <div class="col-md-4">
+                        <input type="text" name="search_sekolah" class="form-control" placeholder="Cari nama sekolah, NPSN, atau kecamatan..." value="{{ request('search_sekolah') }}">
+                    </div>
+                    <div class="col-md-3">
+                        <select name="filter_korwil_sekolah" class="form-select">
+                            <option value="">Semua Wilayah</option>
+                            @foreach($korwilOptions as $option)
+                                <option value="{{ $option->kode_wilayah }}" {{ request('filter_korwil_sekolah') == $option->kode_wilayah ? 'selected' : '' }}>
+                                    {{ $option->kode_wilayah }} - {{ $option->nama_korwil }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select name="filter_status_sekolah" class="form-select">
+                            <option value="">Semua Status</option>
+                            <option value="aktif" {{ request('filter_status_sekolah') == 'aktif' ? 'selected' : '' }}>Aktif</option>
+                            <option value="nonaktif" {{ request('filter_status_sekolah') == 'nonaktif' ? 'selected' : '' }}>Nonaktif</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-search me-2"></i> Filter
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-custom">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>NPSN</th>
+                            <th>Nama Sekolah</th>
+                            <th>Kepala Sekolah</th>
+                            <th>Kontak</th>
+                            <th>Kecamatan</th>
+                            <th>Korwil</th>
+                            <th class="text-center">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($sekolahList as $index => $sekolah)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td><span class="badge bg-secondary">{{ $sekolah->npsn }}</span></td>
+                            <td><strong>{{ $sekolah->nama_sekolah }}</strong><br>
+                                <small class="text-muted">{{ $sekolah->kelurahan }}</small>
+                            </td>
+                            <td>
+                                <div>{{ $sekolah->nama_kepala_sekolah ?? '-' }}</div>
+                                @if($sekolah->no_telp_kepala_sekolah)
+                                    <small><i class="fas fa-phone"></i> {{ $sekolah->no_telp_kepala_sekolah }}</small>
+                                @endif
+                            </td>
+                            <td>{{ $sekolah->no_telp_kepala_sekolah ?? '-' }}</td>
+                            <td>{{ $sekolah->kecamatan }}</td>
+                            <td>
+                                @if($sekolah->kode_wilayah)
+                                    <span class="badge-korwil">{{ $sekolah->kode_wilayah }}</span>
+                                @else
+                                    -
+                                @endif
+                            </td>
+                            <td class="text-center">
+                                @if($sekolah->status == 'aktif')
+                                    <span class="px-3 py-1 badge bg-success-soft rounded-pill">Aktif</span>
+                                @else
+                                    <span class="px-3 py-1 badge bg-danger-soft rounded-pill">Nonaktif</span>
+                                @endif
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="8" class="py-5 text-center text-muted">
+                                <i class="mb-2 fas fa-inbox fs-1 d-block"></i>
+                                Belum ada data sekolah
+                            </td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB GURU (sama seperti sebelumnya, tambahkan kolom kepala sekolah) -->
+        <div class="tab-pane fade" id="guru" role="tabpanel">
+            <div class="mb-4 search-box">
+                <!-- form filter -->
+            </div>
+            <div class="table-responsive">
+                <table class="table table-custom">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Guru</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Pendidikan</th>
+                            <th>Bidang Studi</th>
+                            <th>Sekolah</th>
+                            <th>Kepala Sekolah</th>
+                            <th>Kecamatan</th>
+                            <th>Korwil</th>
+                            <th class="text-center">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($guruList as $index => $guru)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td><strong>{{ $guru->nama_guru }}</strong></td>
+                            <td>{{ $guru->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
+                            <td>{{ $guru->pendidikan_terakhir }}</td>
+                            <td>{{ $guru->bidang_studi }}</td>
+                            <td>{{ $guru->nama_sekolah }}</td>
+                            <td>{{ $guru->nama_kepala_sekolah ?? '-' }}</td>
+                            <td>{{ $guru->kecamatan }}</td>
+                            <td><span class="badge-korwil">{{ $guru->kode_wilayah ?? '-' }}</span></td>
+                            <td class="text-center">
+                                @if($guru->status == 'aktif')
+                                    <span class="badge bg-success-soft">Aktif</span>
+                                @else
+                                    <span class="badge bg-danger-soft">Nonaktif</span>
+                                @endif
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="10" class="py-5 text-center text-muted">Belum ada data</td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB SISWA (sama seperti sebelumnya, tambahkan kolom kepala sekolah) -->
+        <div class="tab-pane fade" id="siswa" role="tabpanel">
+            <!-- tambahkan kolom kepala sekolah di tabel siswa -->
+        </div>
+    </div>
+</div>
 
         <div class="tab-content">
             <!-- TAB KORWIL -->
@@ -509,7 +666,7 @@
                                 <td class="text-center">{{ number_format($korwil->jumlah_siswa) }}</td>
                                 <td class="text-center">{{ number_format($korwil->total_absensi) }}</td>
                                 <td class="text-center">
-                                    <div class="d-flex align-items-center justify-content-center gap-2">
+                                    <div class="gap-2 d-flex align-items-center justify-content-center">
                                         <div class="progress-custom flex-grow-1" style="width: 100px;">
                                             <div class="progress-bar-custom" style="width: {{ $korwil->persen_kehadiran }}%; height: 8px; border-radius: 10px;"></div>
                                         </div>
@@ -521,8 +678,8 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="9" class="text-center py-5 text-muted">
-                                    <i class="fas fa-inbox fs-1 d-block mb-2"></i>
+                                <td colspan="9" class="py-5 text-center text-muted">
+                                    <i class="mb-2 fas fa-inbox fs-1 d-block"></i>
                                     Belum ada data korwil
                                 </td>
                             </tr>
@@ -534,7 +691,7 @@
 
             <!-- TAB GURU -->
             <div class="tab-pane fade" id="guru" role="tabpanel">
-                <div class="search-box mb-4">
+                <div class="mb-4 search-box">
                     <form method="GET" action="{{ url('/rekap-korwil') }}" class="row g-3">
                         <input type="hidden" name="tab" value="guru">
                         <div class="col-md-5">
@@ -586,16 +743,16 @@
                                 <td><span class="badge-korwil">{{ $guru->kode_wilayah ?? '-' }}</span></td>
                                 <td class="text-center">
                                     @if($guru->status == 'aktif')
-                                        <span class="badge bg-success-soft px-3 py-1 rounded-pill">Aktif</span>
+                                        <span class="px-3 py-1 badge bg-success-soft rounded-pill">Aktif</span>
                                     @else
-                                        <span class="badge bg-danger-soft px-3 py-1 rounded-pill">Nonaktif</span>
+                                        <span class="px-3 py-1 badge bg-danger-soft rounded-pill">Nonaktif</span>
                                     @endif
                                 </td>
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="9" class="text-center py-5 text-muted">
-                                    <i class="fas fa-inbox fs-1 d-block mb-2"></i>
+                                <td colspan="9" class="py-5 text-center text-muted">
+                                    <i class="mb-2 fas fa-inbox fs-1 d-block"></i>
                                     Belum ada data guru
                                 </td>
                             </tr>
@@ -607,7 +764,7 @@
 
             <!-- TAB SISWA -->
             <div class="tab-pane fade" id="siswa" role="tabpanel">
-                <div class="search-box mb-4">
+                <div class="mb-4 search-box">
                     <form method="GET" action="{{ url('/rekap-korwil') }}" class="row g-3">
                         <input type="hidden" name="tab" value="siswa">
                         <div class="col-md-5">
@@ -657,18 +814,18 @@
                                 <td><span class="badge-korwil">{{ $siswa->kode_wilayah ?? '-' }}</span></td>
                                 <td class="text-center">
                                     @if($siswa->status == 'aktif')
-                                        <span class="badge bg-success-soft px-3 py-1 rounded-pill">Aktif</span>
+                                        <span class="px-3 py-1 badge bg-success-soft rounded-pill">Aktif</span>
                                     @elseif($siswa->status == 'lulus')
-                                        <span class="badge bg-info-soft px-3 py-1 rounded-pill">Lulus</span>
+                                        <span class="px-3 py-1 badge bg-info-soft rounded-pill">Lulus</span>
                                     @else
-                                        <span class="badge bg-danger-soft px-3 py-1 rounded-pill">{{ ucfirst($siswa->status) }}</span>
+                                        <span class="px-3 py-1 badge bg-danger-soft rounded-pill">{{ ucfirst($siswa->status) }}</span>
                                     @endif
                                 </td>
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="8" class="text-center py-5 text-muted">
-                                    <i class="fas fa-inbox fs-1 d-block mb-2"></i>
+                                <td colspan="8" class="py-5 text-center text-muted">
+                                    <i class="mb-2 fas fa-inbox fs-1 d-block"></i>
                                     Belum ada data siswa
                                 </td>
                             </tr>
@@ -681,7 +838,7 @@
     </div>
 
     <!-- ======================= FOOTER ======================= -->
-    <footer class="footer py-4 mt-5">
+    <footer class="py-4 mt-5 footer">
         <div class="container text-center">
             <p class="mb-0 opacity-75">&copy; {{ date('Y') }} SIMAGU - Sistem Monitoring Absensi Guru. All rights reserved.</p>
         </div>

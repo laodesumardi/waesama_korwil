@@ -19,6 +19,8 @@ class Sekolah extends Model
         'kecamatan',
         'id_korwil',
         'status',
+        'nama_kepala_sekolah',      // Tambahkan ini
+        'no_telp_kepala_sekolah',   // Tambahkan ini
     ];
 
     protected $casts = [

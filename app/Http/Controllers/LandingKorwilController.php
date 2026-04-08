@@ -85,8 +85,48 @@ class LandingKorwilController extends Controller
                 : 0;
         }
 
-        // Data Guru per Wilayah (tanpa data pribadi)
-        $guruList = Guru::select(
+        // Data untuk filter dropdown korwil
+        $korwilOptions = Korwil::select('kode_wilayah', 'nama_korwil')->get();
+
+        // Data Sekolah (TAB BARU)
+        $sekolahQuery = Sekolah::select(
+            'sekolah.id',
+            'sekolah.npsn',
+            'sekolah.nama_sekolah',
+            'sekolah.alamat',
+            'sekolah.kelurahan',
+            'sekolah.kecamatan',
+            'sekolah.status',
+            'sekolah.nama_kepala_sekolah',
+            'sekolah.no_telp_kepala_sekolah',
+            'korwil.nama_korwil',
+            'korwil.kode_wilayah'
+        )
+            ->leftJoin('korwil', 'sekolah.id_korwil', '=', 'korwil.id')
+            ->orderBy('korwil.nama_korwil')
+            ->orderBy('sekolah.nama_sekolah');
+
+        // Filter untuk sekolah
+        if ($request->filled('search_sekolah')) {
+            $sekolahQuery->where(function ($q) use ($request) {
+                $q->where('sekolah.nama_sekolah', 'like', '%' . $request->search_sekolah . '%')
+                    ->orWhere('sekolah.npsn', 'like', '%' . $request->search_sekolah . '%')
+                    ->orWhere('sekolah.kecamatan', 'like', '%' . $request->search_sekolah . '%');
+            });
+        }
+
+        if ($request->filled('filter_korwil_sekolah')) {
+            $sekolahQuery->where('korwil.kode_wilayah', $request->filter_korwil_sekolah);
+        }
+
+        if ($request->filled('filter_status_sekolah')) {
+            $sekolahQuery->where('sekolah.status', $request->filter_status_sekolah);
+        }
+
+        $sekolahList = $sekolahQuery->get();
+
+        // Data Guru
+        $guruQuery = Guru::select(
             'guru.id',
             'guru.nama_guru',
             'guru.jenis_kelamin',
@@ -95,18 +135,32 @@ class LandingKorwilController extends Controller
             'guru.status',
             'sekolah.nama_sekolah',
             'sekolah.kecamatan',
+            'sekolah.nama_kepala_sekolah',
+            'sekolah.no_telp_kepala_sekolah',
             'korwil.nama_korwil',
             'korwil.kode_wilayah'
         )
             ->join('sekolah', 'guru.id_sekolah', '=', 'sekolah.id')
             ->leftJoin('korwil', 'sekolah.id_korwil', '=', 'korwil.id')
-            ->where('guru.status', 'aktif')
             ->orderBy('korwil.nama_korwil')
-            ->orderBy('guru.nama_guru')
-            ->get();
+            ->orderBy('guru.nama_guru');
 
-        // Data Siswa per Wilayah (tanpa data pribadi)
-        $siswaList = Siswa::select(
+        if ($request->filled('search_guru')) {
+            $guruQuery->where(function ($q) use ($request) {
+                $q->where('guru.nama_guru', 'like', '%' . $request->search_guru . '%')
+                    ->orWhere('guru.bidang_studi', 'like', '%' . $request->search_guru . '%')
+                    ->orWhere('sekolah.nama_sekolah', 'like', '%' . $request->search_guru . '%');
+            });
+        }
+
+        if ($request->filled('filter_korwil')) {
+            $guruQuery->where('korwil.kode_wilayah', $request->filter_korwil);
+        }
+
+        $guruList = $guruQuery->get();
+
+        // Data Siswa
+        $siswaQuery = Siswa::select(
             'siswa.id',
             'siswa.nama_siswa',
             'siswa.jenis_kelamin',
@@ -114,49 +168,29 @@ class LandingKorwilController extends Controller
             'siswa.status',
             'sekolah.nama_sekolah',
             'sekolah.kecamatan',
+            'sekolah.nama_kepala_sekolah',
             'korwil.nama_korwil',
             'korwil.kode_wilayah'
         )
             ->join('sekolah', 'siswa.id_sekolah', '=', 'sekolah.id')
             ->leftJoin('korwil', 'sekolah.id_korwil', '=', 'korwil.id')
-            ->where('siswa.status', 'aktif')
             ->orderBy('korwil.nama_korwil')
             ->orderBy('siswa.kelas')
-            ->orderBy('siswa.nama_siswa')
-            ->get();
+            ->orderBy('siswa.nama_siswa');
 
-        // Filter untuk guru dan siswa
-        $searchGuru = $request->input('search_guru');
-        $searchSiswa = $request->input('search_siswa');
-        $filterKorwil = $request->input('filter_korwil');
-
-        if ($searchGuru) {
-            $guruList = $guruList->filter(function ($guru) use ($searchGuru) {
-                return stripos($guru->nama_guru, $searchGuru) !== false ||
-                    stripos($guru->bidang_studi, $searchGuru) !== false ||
-                    stripos($guru->nama_sekolah, $searchGuru) !== false;
+        if ($request->filled('search_siswa')) {
+            $siswaQuery->where(function ($q) use ($request) {
+                $q->where('siswa.nama_siswa', 'like', '%' . $request->search_siswa . '%')
+                    ->orWhere('siswa.kelas', 'like', '%' . $request->search_siswa . '%')
+                    ->orWhere('sekolah.nama_sekolah', 'like', '%' . $request->search_siswa . '%');
             });
         }
 
-        if ($searchSiswa) {
-            $siswaList = $siswaList->filter(function ($siswa) use ($searchSiswa) {
-                return stripos($siswa->nama_siswa, $searchSiswa) !== false ||
-                    stripos($siswa->kelas, $searchSiswa) !== false ||
-                    stripos($siswa->nama_sekolah, $searchSiswa) !== false;
-            });
+        if ($request->filled('filter_korwil_siswa')) {
+            $siswaQuery->where('korwil.kode_wilayah', $request->filter_korwil_siswa);
         }
 
-        if ($filterKorwil) {
-            $guruList = $guruList->filter(function ($guru) use ($filterKorwil) {
-                return $guru->kode_wilayah == $filterKorwil;
-            });
-            $siswaList = $siswaList->filter(function ($siswa) use ($filterKorwil) {
-                return $siswa->kode_wilayah == $filterKorwil;
-            });
-        }
-
-        // Data untuk filter dropdown
-        $korwilOptions = Korwil::select('kode_wilayah', 'nama_korwil')->get();
+        $siswaList = $siswaQuery->get();
 
         return view('landing.korwil', compact(
             'totalSekolah',
@@ -178,9 +212,10 @@ class LandingKorwilController extends Controller
             'guruIzin',
             'guruAlpha',
             'korwilList',
+            'korwilOptions',
+            'sekolahList',
             'guruList',
-            'siswaList',
-            'korwilOptions'
+            'siswaList'
         ));
     }
 }

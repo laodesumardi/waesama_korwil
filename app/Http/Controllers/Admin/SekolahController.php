@@ -61,6 +61,8 @@ class SekolahController extends Controller
             'kecamatan' => 'required|string|max:100',
             'id_korwil' => 'required|exists:korwil,id',
             'status' => 'required|in:aktif,nonaktif',
+            'nama_kepala_sekolah' => 'nullable|string|max:100',      // Tambahkan
+            'no_telp_kepala_sekolah' => 'nullable|string|max:20',    // Tambahkan
         ]);
 
         $sekolah = Sekolah::create($request->all());
@@ -103,6 +105,8 @@ class SekolahController extends Controller
             'kecamatan' => 'required|string|max:100',
             'id_korwil' => 'required|exists:korwil,id',
             'status' => 'required|in:aktif,nonaktif',
+            'nama_kepala_sekolah' => 'nullable|string|max:100',      // Tambahkan
+            'no_telp_kepala_sekolah' => 'nullable|string|max:20',
         ]);
 
         $sekolah->update($request->all());

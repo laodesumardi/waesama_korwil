@@ -2,210 +2,220 @@
 
 @section('content')
 <div class="sekolah-index">
-    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+    <div class="mb-4 d-flex justify-content-between align-items-center">
         <div>
-            <h3 class="mb-0 fw-semibold">
+            <h3 class="mb-1 fw-bold">
                 <i class="bi bi-building-fill me-2 text-warning"></i>
                 Manajemen Sekolah
             </h3>
-            <p class="text-muted small mb-0 mt-1">Kelola data sekolah binaan</p>
+            <p class="text-muted small">Kelola data sekolah binaan</p>
         </div>
         <a href="{{ route('admin.sekolah.create') }}" class="btn btn-warning">
-            <i class="bi bi-plus-circle me-1"></i> Tambah Sekolah
+            <i class="bi bi-plus-circle me-1"></i> Tambah
         </a>
     </div>
 
-    {{-- Filter Card --}}
-    <div class="card border-0 shadow-sm mb-4">
+    {{-- Statistik --}}
+    <div class="mb-4 row g-3">
+        <div class="col-md-3 col-6">
+            <div class="border-0 card bg-primary bg-opacity-10">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <span class="text-muted small">Total Sekolah</span>
+                            <h3 class="mb-0 fw-bold">{{ number_format($sekolahs->total()) }}</h3>
+                        </div>
+                        <i class="opacity-50 bi bi-building fs-2 text-primary"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="border-0 card bg-success bg-opacity-10">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <span class="text-muted small">Aktif</span>
+                            <h3 class="mb-0 fw-bold text-success">{{ number_format($sekolahs->where('status', 'aktif')->count()) }}</h3>
+                        </div>
+                        <i class="opacity-50 bi bi-check-circle fs-2 text-success"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="border-0 card bg-danger bg-opacity-10">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <span class="text-muted small">Nonaktif</span>
+                            <h3 class="mb-0 fw-bold text-danger">{{ number_format($sekolahs->where('status', 'nonaktif')->count()) }}</h3>
+                        </div>
+                        <i class="opacity-50 bi bi-x-circle fs-2 text-danger"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="border-0 card bg-info bg-opacity-10">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <span class="text-muted small">Korwil</span>
+                            <h3 class="mb-0 fw-bold text-info">{{ number_format($korwilList->count()) }}</h3>
+                        </div>
+                        <i class="opacity-50 bi bi-diagram-3 fs-2 text-info"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Filter --}}
+    <div class="mb-4 border-0 shadow-sm card">
         <div class="card-body">
-            <form method="GET" action="{{ route('admin.sekolah.index') }}" class="row g-3">
+            <form method="GET" class="row g-2">
                 <div class="col-md-4">
-                    <label class="form-label small fw-semibold">Cari</label>
-                    <input type="text" name="search" class="form-control" placeholder="Nama sekolah, NPSN, kecamatan..." value="{{ request('search') }}">
+                    <input type="text" name="search" class="border-0 form-control bg-light"
+                           placeholder="Cari sekolah..." value="{{ request('search') }}">
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label small fw-semibold">Korwil</label>
-                    <select name="id_korwil" class="form-select">
+                    <select name="id_korwil" class="border-0 form-select bg-light">
                         <option value="">Semua Korwil</option>
                         @foreach($korwilList as $korwil)
                             <option value="{{ $korwil->id }}" {{ request('id_korwil') == $korwil->id ? 'selected' : '' }}>
-                                {{ $korwil->nama_korwil }} ({{ $korwil->kode_wilayah }})
+                                {{ $korwil->nama_korwil }}
                             </option>
                         @endforeach
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label small fw-semibold">Status</label>
-                    <select name="status" class="form-select">
+                    <select name="status" class="border-0 form-select bg-light">
                         <option value="">Semua Status</option>
                         <option value="aktif" {{ request('status') == 'aktif' ? 'selected' : '' }}>Aktif</option>
                         <option value="nonaktif" {{ request('status') == 'nonaktif' ? 'selected' : '' }}>Nonaktif</option>
                     </select>
                 </div>
-                <div class="col-md-2 d-flex align-items-end">
-                    <button type="submit" class="btn btn-dark w-100">
-                        <i class="bi bi-search me-1"></i> Filter
-                    </button>
+                <div class="col-md-2">
+                    <div class="gap-2 d-flex">
+                        <button class="btn btn-dark w-100"><i class="bi bi-search"></i></button>
+                        <a href="{{ route('admin.sekolah.index') }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-repeat"></i></a>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
 
-    {{-- Tabel Sekolah --}}
-    <div class="card border-0 shadow-sm">
-        <div class="card-body p-0">
-            <div class="table-responsive">
-                <table class="table table-hover mb-0 align-middle">
-                    <thead class="table-light">
-                        <tr class="small">
-                            <th class="py-3 ps-3" style="width: 60px">#</th>
-                            <th class="py-3">NPSN</th>
-                            <th class="py-3">Nama Sekolah</th>
-                            <th class="py-3">Korwil</th>
-                            <th class="py-3">Kecamatan</th>
-                            <th class="py-3 text-center">Status</th>
-                            <th class="py-3 text-center pe-3" style="width: 120px">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($sekolahs as $index => $sekolah)
-                        <tr>
-                            <td class="ps-3">{{ $sekolahs->firstItem() + $index }}</td>
-                            <td>
-                                <span class="badge bg-info-soft px-3 py-1 rounded-pill">
-                                    <i class="bi bi-qr-code me-1"></i> {{ $sekolah->npsn }}
-                                </span>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center gap-2">
-                                    <div class="rounded-circle bg-primary bg-opacity-10 d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;">
-                                        <i class="bi bi-building text-primary"></i>
-                                    </div>
-                                    <div>
-                                        <strong class="small">{{ $sekolah->nama_sekolah }}</strong>
-                                        <div class="text-muted small">{{ $sekolah->kelurahan }}</div>
-                                    </div>
+    {{-- Tabel --}}
+    <div class="border-0 shadow-sm card">
+        <div class="table-responsive">
+            <table class="table mb-0 align-middle table-hover">
+                <thead class="table-light">
+                    <tr class="small text-muted">
+                        <th class="py-3 ps-3">#</th>
+                        <th>NPSN</th>
+                        <th>Nama Sekolah</th>
+                        <th>Kepala Sekolah</th>
+                        <th>Korwil</th>
+                        <th>Kecamatan</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center pe-3">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($sekolahs as $index => $sekolah)
+                    <tr>
+                        <td class="ps-3">{{ $sekolahs->firstItem() + $index }}</td>
+                        <td><span class="badge bg-light text-dark">{{ $sekolah->npsn }}</span></td>
+                        <td>
+                            <div class="gap-2 d-flex align-items-center">
+                                <i class="bi bi-building text-primary"></i>
+                                <div>
+                                    <div class="fw-semibold">{{ $sekolah->nama_sekolah }}</div>
+                                    <div class="small text-muted">{{ $sekolah->kelurahan }}</div>
                                 </div>
-                            </td>
-                            <td>
-                                @if($sekolah->korwil)
-                                    <div class="d-flex align-items-center gap-1">
-                                        <i class="bi bi-person-badge text-muted small"></i>
-                                        <span class="small">{{ $sekolah->korwil->nama_korwil }}</span>
-                                    </div>
-                                @else
-                                    <span class="text-muted small">-</span>
-                                @endif
-                            </td>
-                            <td>{{ $sekolah->kecamatan }}</td>
-                            <td class="text-center">
-                                @if($sekolah->status == 'aktif')
-                                    <span class="badge bg-success-soft px-3 py-1 rounded-pill">
-                                        <i class="bi bi-check-circle-fill me-1 small"></i> Aktif
-                                    </span>
-                                @else
-                                    <span class="badge bg-danger-soft px-3 py-1 rounded-pill">
-                                        <i class="bi bi-x-circle-fill me-1 small"></i> Nonaktif
-                                    </span>
-                                @endif
-                            </td>
-                            <td class="text-center pe-3">
-                                <div class="btn-group">
-                                    <a href="{{ route('admin.sekolah.show', $sekolah->id) }}" class="btn btn-sm btn-outline-secondary" title="Detail">
-                                        <i class="bi bi-eye"></i>
-                                    </a>
-                                    <a href="{{ route('admin.sekolah.edit', $sekolah->id) }}" class="btn btn-sm btn-outline-warning" title="Edit">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="fw-semibold">{{ $sekolah->nama_kepala_sekolah ?? '-' }}</div>
+                            @if($sekolah->no_telp_kepala_sekolah)
+                                <small class="text-muted">{{ $sekolah->no_telp_kepala_sekolah }}</small>
+                            @endif
+                        </td>
+                        <td>{{ $sekolah->korwil->nama_korwil ?? '-' }}</td>
+                        <td>{{ $sekolah->kecamatan }}</td>
+                        <td class="text-center">
+                            @if($sekolah->status == 'aktif')
+                                <span class="px-3 py-1 badge bg-success bg-opacity-10 text-success">Aktif</span>
+                            @else
+                                <span class="px-3 py-1 badge bg-danger bg-opacity-10 text-danger">Nonaktif</span>
+                            @endif
+                        </td>
+                        <td class="text-center pe-3">
+                            <div class="btn-group btn-group-sm">
+                                <a href="{{ route('admin.sekolah.show', $sekolah->id) }}" class="btn btn-outline-secondary" title="Detail">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a href="{{ route('admin.sekolah.edit', $sekolah->id) }}" class="btn btn-outline-warning" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <button type="button" class="btn btn-outline-danger" title="Hapus" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $sekolah->id }}">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
 
-                                    <button type="button" class="btn btn-sm btn-outline-danger" title="Hapus" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $sekolah->id }}">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </div>
-
-                                {{-- Modal Delete --}}
-                                <div class="modal fade" id="deleteModal{{ $sekolah->id }}" tabindex="-1">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Konfirmasi Hapus</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                            </div>
-                                            <div class="modal-body text-start">
-                                                <p>Apakah Anda yakin ingin menghapus sekolah <strong>{{ $sekolah->nama_sekolah }}</strong>?</p>
-                                                @if($sekolah->absensi->count() > 0)
-                                                    <div class="alert alert-warning">
-                                                        <i class="bi bi-exclamation-triangle me-2"></i>
-                                                        Sekolah ini memiliki {{ $sekolah->absensi->count() }} data absensi. Tidak dapat dihapus.
-                                                    </div>
-                                                @else
-                                                    <small class="text-muted">Tindakan ini tidak dapat dibatalkan.</small>
-                                                @endif
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                @if($sekolah->absensi->count() == 0)
-                                                    <form action="{{ route('admin.sekolah.destroy', $sekolah->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Ya, Hapus</button>
-                                                    </form>
-                                                @endif
-                                            </div>
+                    {{-- Modal Hapus --}}
+                    <div class="modal fade" id="deleteModal{{ $sekolah->id }}" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered modal-sm">
+                            <div class="modal-content">
+                                <div class="p-4 text-center modal-body">
+                                    <i class="mb-3 bi bi-exclamation-triangle fs-1 text-warning d-block"></i>
+                                    <p class="mb-0">Hapus <strong>{{ $sekolah->nama_sekolah }}</strong>?</p>
+                                    @if($sekolah->absensi->count() > 0)
+                                        <div class="mt-3 mb-0 alert alert-warning small">Masih punya data absensi</div>
+                                    @else
+                                        <div class="mt-3">
+                                            <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Batal</button>
+                                            <form action="{{ route('admin.sekolah.destroy', $sekolah->id) }}" method="POST" class="d-inline">
+                                                @csrf @method('DELETE')
+                                                <button class="btn btn-danger btn-sm">Hapus</button>
+                                            </form>
                                         </div>
-                                    </div>
+                                    @endif
                                 </div>
-                            </td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="7" class="text-center py-5 text-muted">
-                                <i class="bi bi-inbox fs-1 d-block mb-2"></i>
-                                Belum ada data sekolah
-                            </td>
-                        </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
+                            </div>
+                        </div>
+                    </div>
+                    @empty
+                    <tr>
+                        <td colspan="8" class="py-5 text-center text-muted">
+                            <i class="mb-2 bi bi-inbox fs-2 d-block"></i>
+                            <span>Belum ada data</span>
+                        </td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
-        <div class="card-footer bg-transparent">
-            {{ $sekolahs->links() }}
+        <div class="pb-3 bg-transparent border-0 card-footer">
+            {{ $sekolahs->appends(request()->query())->links() }}
         </div>
     </div>
 </div>
 
 <style scoped>
-.sekolah-index {
-    width: 100%;
+.sekolah-index .table td {
+    padding: 12px 8px;
+    vertical-align: middle;
 }
-
-.bg-primary-soft {
-    background-color: rgba(13, 110, 253, 0.1);
-    color: #0d6efd;
+.sekolah-index .table th {
+    padding: 12px 8px;
 }
-
-.bg-info-soft {
-    background-color: rgba(13, 202, 240, 0.1);
-    color: #0dcaf0;
-}
-
-.bg-success-soft {
-    background-color: rgba(25, 135, 84, 0.1);
-    color: #198754;
-}
-
-.bg-danger-soft {
-    background-color: rgba(220, 53, 69, 0.1);
-    color: #dc3545;
-}
-
-.btn-group {
-    gap: 5px;
-}
-
 .btn-group .btn {
-    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 12px;
 }
 </style>
 @endsection
