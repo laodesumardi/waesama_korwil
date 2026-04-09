@@ -200,7 +200,9 @@
             </table>
         </div>
         <div class="pb-3 bg-transparent border-0 card-footer">
-            {{ $sekolahs->appends(request()->query())->links() }}
+            <div class="d-flex justify-content-center">
+                {{ $sekolahs->appends(request()->query())->links('pagination::bootstrap-5') }}
+            </div>
         </div>
     </div>
 </div>
@@ -216,6 +218,28 @@
 .btn-group .btn {
     padding: 4px 8px;
     font-size: 12px;
+}
+
+/* Memperkecil ukuran tombol paginasi */
+.sekolah-index .pagination {
+    --bs-pagination-padding-x: 0.6rem;
+    --bs-pagination-padding-y: 0.35rem;
+    --bs-pagination-font-size: 0.85rem;
+    margin-bottom: 0;
+}
+
+.sekolah-index .page-link {
+    padding: var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
+    font-size: var(--bs-pagination-font-size);
+}
+
+/* Membuat paginasi lebih rapi di mobile */
+@media (max-width: 768px) {
+    .sekolah-index .pagination {
+        --bs-pagination-padding-x: 0.45rem;
+        --bs-pagination-padding-y: 0.25rem;
+        --bs-pagination-font-size: 0.75rem;
+    }
 }
 </style>
 @endsection
