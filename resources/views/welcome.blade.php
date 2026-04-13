@@ -179,7 +179,7 @@
                     <!-- Kiri: Teks -->
                     <div class="text-center col-lg-6 text-lg-start">
                         <h1 class="fw-bold display-5">
-                            Sistem monitoring absensi Guru PAUD/SD/SMP Dinas pendidikan kabupaten Buru selatan
+                            Sistem Monitoring Absensi Guru PAUD/SD/SMP Dinas Pendidikan Kabupaten Buru Selatan
                         </h1>
                         <p class="mt-3 opacity-75 lead text-light">
                             Platform untuk membantu Dinas Pendidikan memantau kehadiran guru secara real-time di seluruh sekolah. Transparansi data untuk integritas pendidikan.
