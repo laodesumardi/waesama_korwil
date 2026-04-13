@@ -178,10 +178,10 @@
 
                     <!-- Kiri: Teks -->
                     <div class="text-center col-lg-6 text-lg-start">
-                        <h1 class="fw-bold display-4">
-                            Sistem Monitoring Absensi Guru SMP Berbasis Digital
+                        <h1 class="fw-bold display-5">
+                            Sistem monitoring absensi Guru PAUD/SD/SMP Dinas pendidikan kabupaten Buru selatan
                         </h1>
-                        <p class="mt-3 lead text-light opacity-75">
+                        <p class="mt-3 opacity-75 lead text-light">
                             Platform untuk membantu Dinas Pendidikan memantau kehadiran guru secara real-time di seluruh sekolah. Transparansi data untuk integritas pendidikan.
                         </p>
                         <div class="gap-3 mt-4 d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start">
@@ -203,7 +203,7 @@
                     <!-- Kanan: Gambar ilustrasi -->
                     <div class="text-center col-lg-6" style="height:400px;">
                         <img src="{{ asset('img/hero.jpg') }}"
-                            class="rounded-4 shadow-lg w-100 h-100 object-fit-cover"
+                            class="shadow-lg rounded-4 w-100 h-100 object-fit-cover"
                             alt="Dashboard SIMAGU"
                             onerror="this.src='https://placehold.co/650x450/1e2a5e/white?text=Dashboard+SIMAGU'">
                     </div>
@@ -215,33 +215,33 @@
     <!-- ======================= STATISTIK ======================= -->
     <div class="py-5 bg-light">
         <div class="container">
-            <div class="row text-center gy-4">
+            <div class="text-center row gy-4">
                 <div class="col-md-3 col-6 stat-item">
                     <h1 class="fw-bold text-dark">120+</h1>
-                    <p class="text-uppercase small text-secondary mb-0">Sekolah Terdaftar</p>
+                    <p class="mb-0 text-uppercase small text-secondary">Sekolah Terdaftar</p>
                 </div>
                 <div class="col-md-3 col-6 stat-item">
                     <h1 class="fw-bold text-dark">1500+</h1>
-                    <p class="text-uppercase small text-secondary mb-0">Guru Aktif</p>
+                    <p class="mb-0 text-uppercase small text-secondary">Guru Aktif</p>
                 </div>
                 <div class="col-md-3 col-6 stat-item">
                     <h1 class="fw-bold text-dark">30+</h1>
-                    <p class="text-uppercase small text-secondary mb-0">Operator Wilayah</p>
+                    <p class="mb-0 text-uppercase small text-secondary">Operator Wilayah</p>
                 </div>
                 <div class="col-md-3 col-6 stat-item">
                     <h1 class="fw-bold text-warning">REAL</h1>
-                    <p class="text-uppercase small text-secondary mb-0">Monitoring Time</p>
+                    <p class="mb-0 text-uppercase small text-secondary">Monitoring Time</p>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- ======================= TENTANG SISTEM (FITUR INTRO) ======================= -->
-    <section class="fitur-section bg-white" id="tentang">
+    <section class="bg-white fitur-section" id="tentang">
         <div class="container">
             <div class="row align-items-center g-5">
                 <div class="text-center col-lg-6 text-lg-start">
-                    <span class="badge bg-warning text-dark mb-3 px-3 py-2 rounded-pill">Tentang Sistem</span>
+                    <span class="px-3 py-2 mb-3 badge bg-warning text-dark rounded-pill">Tentang Sistem</span>
                     <h3 class="mb-3 fw-bold text-dark display-6">Sistem Monitoring Absensi Guru</h3>
                     <p class="mb-3 text-dark-emphasis">
                         Kami percaya bahwa kedisiplinan adalah kunci utama kualitas proses belajar mengajar di setiap sekolah.
@@ -255,7 +255,7 @@
                 <div class="col-lg-6">
                     <div class="row g-4">
                         <div class="col-12 col-sm-6">
-                            <div class="card border-0 shadow h-100 card-hover">
+                            <div class="border-0 shadow card h-100 card-hover">
                                 <div class="card-body">
                                     <div class="mb-2 text-primary"><i class="fas fa-shield-alt fs-2"></i></div>
                                     <h6 class="fw-bold text-dark">Otentikasi Aman</h6>
@@ -264,7 +264,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
-                            <div class="card border-0 shadow h-100 card-hover" style="background-color:#001d3d; color:white;">
+                            <div class="border-0 shadow card h-100 card-hover" style="background-color:#001d3d; color:white;">
                                 <div class="card-body">
                                     <div class="mb-2"><i class="fas fa-chart-line fs-2"></i></div>
                                     <h6 class="fw-bold">Analisis & Laporan</h6>
@@ -273,7 +273,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
-                            <div class="card border-0 shadow h-100 card-hover">
+                            <div class="border-0 shadow card h-100 card-hover">
                                 <div class="card-body">
                                     <div class="mb-2 text-success"><i class="fas fa-clock fs-2"></i></div>
                                     <h6 class="fw-bold">Real-Time</h6>
@@ -282,7 +282,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
-                            <div class="card border-0 shadow h-100 card-hover">
+                            <div class="border-0 shadow card h-100 card-hover">
                                 <div class="card-body">
                                     <div class="mb-2 text-warning"><i class="fas fa-database fs-2"></i></div>
                                     <h6 class="fw-bold">Terintegrasi</h6>
@@ -343,7 +343,7 @@
             <div class="row g-4">
                 <!-- Info kontak -->
                 <div class="col-lg-5">
-                    <div class="p-4 bg-white rounded-4 shadow h-100">
+                    <div class="p-4 bg-white shadow rounded-4 h-100">
                         <h5 class="mb-4 fw-bold"><i class="fas fa-map-marker-alt me-2 text-danger"></i> Informasi Kontak</h5>
                         <div class="mb-3">
                             <strong>Alamat</strong>
@@ -365,7 +365,7 @@
                 </div>
                 <!-- Form kontak -->
                 <div class="col-lg-7">
-                    <div class="p-4 bg-white rounded-4 shadow">
+                    <div class="p-4 bg-white shadow rounded-4">
                         <h5 class="mb-4 fw-bold"><i class="fas fa-paper-plane me-2 text-primary"></i> Kirim Pesan</h5>
                         <form action="#" method="post">
                             <div class="row g-3">
@@ -398,27 +398,27 @@
             <div class="row gy-4">
                 <div class="col-lg-4 col-md-6">
                     <h5 class="mb-3 fw-bold fs-4">SIMAGU</h5>
-                    <p class="small text-light opacity-75">Sistem Monitoring Absensi Guru yang membantu Dinas Pendidikan memantau kehadiran guru secara real-time dan terintegrasi.</p>
+                    <p class="opacity-75 small text-light">Sistem Monitoring Absensi Guru yang membantu Dinas Pendidikan memantau kehadiran guru secara real-time dan terintegrasi.</p>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <h6 class="mb-3 fw-bold">Menu</h6>
                     <ul class="list-unstyled small">
-                        <li class="mb-2"><a href="{{ url('/#beranda') }}" class="text-light text-decoration-none opacity-75">Beranda</a></li>
-                        <li class="mb-2"><a href="{{ url('/#tentang') }}" class="text-light text-decoration-none opacity-75">Tentang Sistem</a></li>
-                        <li class="mb-2"><a href="{{ url('/#fitur') }}" class="text-light text-decoration-none opacity-75">Alur Kerja</a></li>
-                        <li class="mb-2"><a href="{{ url('/rekap-korwil') }}" class="text-light text-decoration-none opacity-75">Rekap Korwil</a></li>
-                        <li><a href="{{ url('/#kontak') }}" class="text-light text-decoration-none opacity-75">Kontak</a></li>
+                        <li class="mb-2"><a href="{{ url('/#beranda') }}" class="opacity-75 text-light text-decoration-none">Beranda</a></li>
+                        <li class="mb-2"><a href="{{ url('/#tentang') }}" class="opacity-75 text-light text-decoration-none">Tentang Sistem</a></li>
+                        <li class="mb-2"><a href="{{ url('/#fitur') }}" class="opacity-75 text-light text-decoration-none">Alur Kerja</a></li>
+                        <li class="mb-2"><a href="{{ url('/rekap-korwil') }}" class="opacity-75 text-light text-decoration-none">Rekap Korwil</a></li>
+                        <li><a href="{{ url('/#kontak') }}" class="opacity-75 text-light text-decoration-none">Kontak</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 col-md-12">
                     <h6 class="mb-3 fw-bold">Kontak Kami</h6>
-                    <p class="mb-1 small text-light opacity-75">📧 info@simagu.id</p>
-                    <p class="mb-1 small text-light opacity-75">📞 (021) 12345678</p>
-                    <p class="small text-light opacity-75">🏢 Dinas Pendidikan, Pusat</p>
+                    <p class="mb-1 opacity-75 small text-light">📧 info@simagu.id</p>
+                    <p class="mb-1 opacity-75 small text-light">📞 (021) 12345678</p>
+                    <p class="opacity-75 small text-light">🏢 Dinas Pendidikan, Pusat</p>
                 </div>
             </div>
-            <hr class="my-4 border-light opacity-25">
-            <div class="text-center small text-light opacity-75">
+            <hr class="my-4 opacity-25 border-light">
+            <div class="text-center opacity-75 small text-light">
                 © 2026 SIMAGU - Sistem Monitoring Absensi Guru | All rights reserved.
             </div>
         </div>
